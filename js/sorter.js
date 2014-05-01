@@ -5,6 +5,11 @@ CanvasSorter = function(canvas_element) {
 	this.ctx = this.canvas.getContext("2d");
 }
 
+CanvasSorter.prototype.set_canvas_size = function(width, height) {
+	this.canvas.width = width;
+	this.canvas.height = height;
+}
+
 CanvasSorter.prototype.clear_canvas = function() {
 	this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 }
@@ -23,6 +28,7 @@ CanvasSorter.prototype.set_fill_color = function(new_color) {
 
 CanvasSorter.prototype.create_shuffled_int_list = function(int_count) {
 	// Create a list of integers from 1 to int_count, shuffled randomly
+
 	var integer_list = [];
 	var shuffled_list = [];
 
@@ -36,6 +42,8 @@ CanvasSorter.prototype.create_shuffled_int_list = function(int_count) {
 
 		shuffled_list.push(random_value[0]);
 	}
+
 	return shuffled_list;
 }
+
 console.log("end of sorter.js file");
