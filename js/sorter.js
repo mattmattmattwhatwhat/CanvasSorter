@@ -56,14 +56,14 @@ CanvasSorter.prototype.draw_current_list = function() {
 
 	for (var i = 0; i < bar_count; i++) {
 		var x = (i * bar_width) + Math.floor(dead_space/2);
-		var y = this.list_to_sort[i] * bar_height_step_size;
+		var y = (this.list_to_sort[i] * bar_height_step_size) - bar_height_step_size;
 		
 		this.draw_rect(x, y, bar_width, this.canvas.height - y);
 	}
 }
 
 CanvasSorter.prototype.animate_bubble_sort = function() {
-	this.create_shuffled_int_list(300);
+	this.create_shuffled_int_list(100);
 
 	var animating = true;
 	var last_frame = Date.now();
@@ -89,6 +89,7 @@ CanvasSorter.prototype.animate_bubble_sort = function() {
 }
 CanvasSorter.prototype.bubble_sort_step = function() {
 	var is_list_sorted = true;
+
 	for (var i = 1; i < this.list_to_sort.length; i++) {
 		if (this.list_to_sort[i] > this.list_to_sort[i - 1]) {
 			var placeholder = this.list_to_sort[i];
