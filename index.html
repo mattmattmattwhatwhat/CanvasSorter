@@ -17,25 +17,29 @@
 		
 		test.create_shuffled_int_list(100);
 
-		last_frame = Date.now();
-		frame_rate = 1000/10;
+		test.animate_bubble_sort();
+
+/*		animating = true;
 
 		function animate(timestamp) {
-			window.requestAnimationFrame(animate);
+			if (animating) {
+				window.requestAnimationFrame(animate);
+			}
 
 			if (Date.now() - last_frame > frame_rate) {
 				console.log('frame', Date.now());
 				last_frame = Date.now();
 				
-				test.create_shuffled_int_list(100);
+
 
 				test.clear_canvas();
 				test.draw_current_list();
 				
+				animating = !test.bubble_sort_step()
 			}
 		}
 		
-		window.requestAnimationFrame(animate);
+		window.requestAnimationFrame(animate);*/
 
 		console.log("end of index main script");
 	</script>

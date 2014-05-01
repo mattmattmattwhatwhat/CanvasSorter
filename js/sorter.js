@@ -60,10 +60,45 @@ CanvasSorter.prototype.draw_current_list = function() {
 		
 		this.draw_rect(x, y, bar_width, this.canvas.height - y);
 	}
-
-	
 }
 
+CanvasSorter.prototype.animate_bubble_sort = function() {
+	this.create_shuffled_int_list(300);
+
+	var animating = true;
+	var last_frame = Date.now();
+	var frame_rate = 1000/60;
+
+	function animate(timestamp) {
+		if (animating) {
+			window.requestAnimationFrame(animate);
+		}
+
+		if (Date.now() - last_frame > frame_rate) {
+			console.log('frame', Date.now());
+			last_frame = Date.now();			
+
+			test.clear_canvas();
+			test.draw_current_list();
+			
+			animating = !test.bubble_sort_step();
+		}
+	}
+		
+	window.requestAnimationFrame(animate);
+}
+CanvasSorter.prototype.bubble_sort_step = function() {
+	var is_list_sorted = true;
+	for (var i = 1; i < this.list_to_sort.length; i++) {
+		if (this.list_to_sort[i] > this.list_to_sort[i - 1]) {
+			var placeholder = this.list_to_sort[i];
+			this.list_to_sort[i] = this.list_to_sort[i - 1];
+			this.list_to_sort[i - 1] = placeholder;
+			is_list_sorted = false;
+		}
+	}
+	return is_list_sorted;
+}
 
 console.log("end of sorter.js file");
 
