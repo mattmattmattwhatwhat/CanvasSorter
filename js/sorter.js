@@ -43,7 +43,27 @@ CanvasSorter.prototype.create_shuffled_int_list = function(int_count) {
 		shuffled_list.push(random_value[0]);
 	}
 
-	return shuffled_list;
+	this.list_to_sort = shuffled_list;
 }
 
+// --------------
+
+CanvasSorter.prototype.draw_current_list = function() {
+	var bar_count = this.list_to_sort.length;
+	var bar_width = Math.floor(this.canvas.width / bar_count);
+	var bar_height_step_size = this.canvas.height / bar_count;
+	var dead_space = this.canvas.width - (bar_width * bar_count);
+
+	for (var i = 0; i < bar_count; i++) {
+		var x = (i * bar_width) + Math.floor(dead_space/2);
+		var y = this.list_to_sort[i] * bar_height_step_size;
+		
+		this.draw_rect(x, y, bar_width, this.canvas.height - y);
+	}
+
+	
+}
+
+
 console.log("end of sorter.js file");
+
